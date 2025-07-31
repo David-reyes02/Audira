@@ -21,6 +21,7 @@ ScrollTrigger.matchMedia({
       }
     });
 
+
     // Movimiento secuencial
     tl.to("#headphone", {
       y: "85vh",
@@ -119,6 +120,81 @@ ScrollTrigger.matchMedia({
       duration: 1,
       delay: 1,
       ease: 'power1.inOut'
-    })
+    });
+  },
+
+  // Animaciones Mobile (max-width: 990px)
+  "(max-width: 990px)": function () {
+    gsap.from('#section2 .heading', {
+      scrollTrigger: {
+        trigger: '#section2',
+        start: 'top bottom',
+        end: 'center center',
+        scrub: true,
+      },
+      y: '30%',
+      ease: 'power1.inOut',
+    });
+
+    gsap.from('#section3 .heading', {
+      scrollTrigger: {
+        trigger: '#section3',
+        start: 'top bottom',
+        end: 'center bottom',
+        scrub: true,
+      },
+      y: '60%',
+      ease: 'power1.inOut',
+    });
+
+    gsap.from('#section4 img', {
+      scrollTrigger: {
+        trigger: '#section4',
+        start: 'top bottom',
+        end: 'center center',
+        scrub: true,
+      },
+      width: '20%',
+      opacity: 0,
+      ease: 'power1.inOut',
+    });
+
+    gsap.from('#section6 .content-wrapper', {
+      scrollTrigger: {
+        trigger: '#section6',
+        start: 'top bottom',
+        end: 'center center',
+        scrub: true,
+      },
+      y: '35%',
+      duration: 2,
+      ease: 'power1.inOut',
+    });
+
+    let split = SplitText.create('#section1 .heading', {
+      type: 'chars, words, lines',
+      mask: 'lines'
+    });
+
+    gsap.from(split.chars, {
+      yPercent: () => gsap.utils.random(-100, 100),
+      rotation: () => gsap.utils.random(-30, 30),
+      autoAlpha: 0,
+      ease: 'back.out(1.5)',
+      stagger: {
+        amount: 0.5,
+        from: 'random'
+      },
+      duration: 1.5
+    });
+
+    gsap.from('#headphone', {
+      opacity: 0,
+      scale: 0,
+      duration: 1,
+      delay: 1,
+      ease: 'power1.inOut'
+    });
   }
+  
 });
