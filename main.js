@@ -11,6 +11,7 @@ document.querySelector("#headphone").style.willChange = "transform";
 
 ScrollTrigger.matchMedia({
   "(min-width: 991px)": function () {
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#smooth-content",
@@ -20,62 +21,34 @@ ScrollTrigger.matchMedia({
       }
     });
 
-    gsap.to('#headphone', {
-        scrollTrigger: {
-          trigger: '#section2',
-          start: 'top bottom',
-          end: 'center center',
-          scrub: true,
-        },
-        y: '85vh',
-        x: '18vw',
-        width: '32vw',
-        rotate: 90,
-        ease: 'power1.inOut',
-        immediateRender: false,
-      });
-  
-      gsap.to('#headphone', {
-        scrollTrigger: {
-          trigger: '#section3',
-          start: 'top bottom',
-          end: 'bottom bottom',
-          scrub: true,
-        },
-        y: '218vh',
-        x: '0',
-        width: '35vw',
-        rotate: 35,
-        ease: 'power1.inOut',
-        immediateRender: false,
-      });
-  
-      gsap.to('#headphone', {
-      scrollTrigger: {
-        trigger: '#section4',
-        start: 'top bottom',
-        end: 'center center',
-        scrub: true,
-      },
-      rotate: 20,
-      y: '330vh', 
-      ease: 'power1.inOut',
-      });
-    
-      gsap.to('#headphone', {
-        scrollTrigger: {
-          trigger: '#section5',
-          start: 'top bottom',
-          end: 'bottom bottom',
-          scrub: true,
-        },
-        rotate: 0,
-        y: '468vh',
-        width: '20vw',
-        ease: 'power1.inOut',
-      });
+    // Movimiento secuencial
+    tl.to("#headphone", {
+      y: "85vh",
+      x: "18vw",
+      width: "32vw",
+      rotate: 90,
+      ease: "power1.inOut",
+    })
+    .to("#headphone", {
+      y: "255vh",
+      x: "0",
+      width: "25vw",
+      rotate: 30,
+      ease: "power1.inOut",
+    })
+    .to("#headphone", {
+      y: "470vh",
+      width: "20vw",
+      rotate: 0,
+      ease: "power1.inOut",
+    })
+    .to("#headphone", {
+      y: "470vh",
+      rotate: 0,
+      ease: "power1.inOut",
+    });
 
-    // Otras animaciones por sección
+    // Animaciones por sección (pueden quedar)
     gsap.from('#section2 .content-wrapper', {
       scrollTrigger: {
         trigger: '#section2',
@@ -122,7 +95,7 @@ ScrollTrigger.matchMedia({
       ease: 'power1.inOut',
     });
 
-    //animacion de texto
+    // Texto animado
     let split = SplitText.create('#section1 .heading', {
       type: 'chars, words, lines',
       mask: 'lines'
@@ -147,6 +120,5 @@ ScrollTrigger.matchMedia({
       delay: 1,
       ease: 'power1.inOut'
     })
-
   }
 });
